@@ -57,6 +57,8 @@ export default function Recordatorio({session}) {
             
             <div>
              <AppBar/> 
+
+             <Button href='https://github.com/AdanJaramillo/Spotify_180394'> Github </Button>
              <Button variant="contained">
             < Link to="/AddRecordatorio">
                  {/* {i18n.t("ADD REMINDER")*/}
@@ -66,7 +68,7 @@ export default function Recordatorio({session}) {
                 
                 
              </Button>
-             <Button href='https://github.com/AdanJaramillo/Spotify_180394'> Github </Button>
+            
             
             <Grid container padding={10} spacing={7} className="CARD">
             <Grid item xs={12} sm={6} md={4} >
