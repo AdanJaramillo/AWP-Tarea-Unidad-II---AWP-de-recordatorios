@@ -68,7 +68,7 @@ export default function RecordatorioHome({session}) {
                 
                 
              </Button>
-             <Button href='https://github.com/AdanJaramillo/Spotify_180394'> Github </Button>
+             <Button href='https://github.com/AdanJaramillo/AWP-Tarea-Unidad-II---AWP-de-recordatorios'> Github </Button>
             
             <Grid container padding={10} spacing={7} className="CARD">
             <Grid item xs={12} sm={6} md={4} >
