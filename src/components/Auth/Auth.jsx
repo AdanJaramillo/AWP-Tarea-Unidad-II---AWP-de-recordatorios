@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { supabase } from '../../config/supabaseClient'
 import { Box } from '@mui/system'
 import { Button } from '@mui/material'
-import { red } from '@mui/material/colors';
+import { blueGrey } from '@mui/material/colors';
 
 export default function Auth() {
   const [loading, setLoading] = useState(false)
@@ -43,7 +43,7 @@ export default function Auth() {
               handleLogin(email)
             }}
             className={'button block'}
-            disabled={loading} sx={{ bgcolor: red[700] }}
+            disabled={loading} sx={{ bgcolor: blueGrey[700]}}
           >
             {loading ? <span>Cargando</span> : <span>Send magic link</span>}
           </Button>

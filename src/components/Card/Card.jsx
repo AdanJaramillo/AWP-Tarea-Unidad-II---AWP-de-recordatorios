@@ -43,7 +43,7 @@ export default function MultiActionAreaCard({titulo, fechacreacion, contenido, f
         </CardContent>
       </CardActionArea>
      
-        <Button variant="contained" size="small" color="warning">
+        <Button variant="contained" size="small" color="success">
         <Link to="/Recordatorios">
         Edit
         </Link>
