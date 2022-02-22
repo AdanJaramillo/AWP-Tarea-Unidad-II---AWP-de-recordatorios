@@ -1,5 +1,5 @@
 import AppBar from '../../components/AppBar';
-import { Card } from '../Card';
+import { Card } from '../Content';
 import { useState, useEffect } from "react";
 import { supabase } from "../../config/supabaseClient";
 import { Button, Grid } from '@mui/material';
@@ -60,7 +60,7 @@ export default function Recordatorio({session}) {
 
              <Button href='https://github.com/AdanJaramillo/Spotify_180394'> Github </Button>
              <Button variant="contained">
-            < Link to="/AddRecordatorio">
+            < Link to="/NewRecordatorio">
                  {/* {i18n.t("ADD REMINDER")*/}
             ADD REMINDER
              </Link>

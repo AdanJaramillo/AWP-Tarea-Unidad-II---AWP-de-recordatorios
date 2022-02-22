@@ -4,8 +4,8 @@ import AppBar from '../../components/AppBar';
  import { Routes , Route } from "react-router-dom";
 import Account from "../Account";
 import Recordatorios from "../Recordatorios";
-import RecordatorioHome from "../Recordatorio-Home";
-import AddRecordatorio from "../AddRecordatorio";
+import Inicio from "../Inicio";
+import NewRecordatorio from "../NewRecordatorio";
 
 
 
@@ -99,8 +99,8 @@ export default function Rotas({ session }) {
             <Routes>
                         <Route path='/Account' element={<Account key={session.user.id} session={session}  />}/>
                         <Route path='/Recordatorios' element={<Recordatorios key={session.user.id} session={session}  />}/>
-                        <Route path='/AddRecordatorio' element={<AddRecordatorio key={session.user.id} session={session}/>}/>
-                        <Route path='/' element={<RecordatorioHome key={session.user.id} session={session}/>}/>
+                        <Route path='/NewRecordatorio' element={<NewRecordatorio key={session.user.id} session={session}/>}/>
+                        <Route path='/' element={<Inicio key={session.user.id} session={session}/>}/>
             </Routes>
 
         </div>

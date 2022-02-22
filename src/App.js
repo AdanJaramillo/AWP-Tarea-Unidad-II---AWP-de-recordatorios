@@ -2,12 +2,11 @@ import './index.css'
 import { useState, useEffect } from 'react'
 import { supabase } from './config/supabaseClient'
 import Auth from './components/Auth'
-// import Recordatorios from "./components/Recordatorios";
 import Routes from './components/Routes/Routes'
 
 
 
-export default function RecordatorioHome() {
+export default function Inicio() {
   const [session, setSession] = useState(null)
 
   useEffect(() => {

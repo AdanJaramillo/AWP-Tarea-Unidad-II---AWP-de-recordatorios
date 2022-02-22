@@ -1,5 +1,5 @@
 import AppBar from '../AppBar';
-import { Card } from '../Card';
+import { Card } from '../Content';
 import { useState, useEffect } from "react";
 import { supabase } from "../../config/supabaseClient";
 import { Button, Grid } from '@mui/material';
@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 
 
 
-export default function RecordatorioHome({session}) {
+export default function Inicio({session}) {
     const [,setLoading] = useState(true);
     const [titulo, setTitulo] = useState(null);
     const [fechacreacion, setFechaCreacion] = useState(null);
@@ -64,7 +64,7 @@ export default function RecordatorioHome({session}) {
              <AppBar/> 
             
              <Button variant="contained">
-            < Link to="/AddRecordatorio">
+            < Link to="/NewRecordatorio">
                  {/* {i18n.t("ADD REMINDER")*/}
                  {t("ADD REMINDER")}
              </Link>
