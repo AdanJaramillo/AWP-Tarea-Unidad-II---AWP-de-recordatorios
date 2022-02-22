@@ -3,33 +3,29 @@ import { initReactI18next } from "react-i18next";
 
 import LanguageDetector from "i18next-browser-languagedetector";
 
-import * as enL from "../translations/en.json";
-import * as esL from "../translations/es.json";
+import * as enL from "./traslations/en.json";
+import * as esL from "./traslations/es.json";
+
+
 
 i18n
-.use(LanguageDetector)
-.use(initReactI18next)
-.init({
-    resources:{
-        en:{
-            translation:{
-               welcome: enL,
-            },
-        },
-        es:{
-            translation: {
-                welcome: esL,
-
-            },
-        },
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    resources: {
+      en: {
+        translation: enL,
+      },
+      es: {
+        translation: esL,
+      },
     },
-    //lng: "en",
+    // lng: "es",
     fallbackLng: "en",
 
     interpolation: {
-        escapeValue: false,
+      escapeValue: false,
     },
-});
+  });
 
 export default i18n;
-

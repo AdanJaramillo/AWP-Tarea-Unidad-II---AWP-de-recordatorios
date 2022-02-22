@@ -1,11 +1,24 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Avatar, Tooltip, Box, IconButton, Button } from '@mui/material';
+import { AppBar, Toolbar, Typography, Avatar, Tooltip, Box, IconButton, Button, Grid } from '@mui/material';
 import { supabase } from "../../config/supabaseClient";
 import { Link } from 'react-router-dom';
 import { blue, blueGrey } from '@mui/material/colors';
+import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
+
 
 
 const Navbar = () => {    
+
+    useEffect(() => {
+        changeLaguage();
+    },);
+    
+      const { i18n, t } = useTranslation();
+      
+      const changeLaguage = (language) => {
+        i18n.changeLanguage(language);
+      };
 
     return (
         
@@ -26,27 +39,30 @@ const Navbar = () => {
 
                         </IconButton>
                         <Typography variant='h6' component="div" sx={{ flexGrow: 1 }}>
-                        WELCOME
+                        {t("WELCOME")}
                         </Typography>
 
                         <Button color="inherit" >
                                 <Link to="/">
-                                Home
+                                {t("HOME")}
                                 </Link>
                                 </Button>
+
+
+                   
 
                         <Button color="inherit" >
                                 <Link to="/Account">
-                                Profile
+                                {t("PROFILE")}
                                 </Link>
                                 </Button>
+
+                                <br></br> 
                                 
 
-                        <Button variant="outlined" color="error" onClick={() => supabase.auth.signOut()}>
-                        EXIT
-                    </Button>
+                        
 
-                    <br></br>
+                    
                     
                     
                         <Tooltip title="Account">
@@ -56,6 +72,16 @@ const Navbar = () => {
                             </Avatar>
                             </IconButton>
                         </Tooltip>
+
+                        <br></br>
+
+                        <Grid>
+
+                        <Button variant="contained" color="error" onClick={() => supabase.auth.signOut()}>
+                        {t("EXIT")}
+                    </Button>
+
+                    </Grid>
 
                     </Toolbar>
 

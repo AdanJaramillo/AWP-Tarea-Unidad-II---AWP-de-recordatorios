@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "../../config/supabaseClient";
 import { Button, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
-
+import { useTranslation } from "react-i18next";
 //import i18n from '../../config/localization/i18n';
 
 
@@ -16,6 +16,9 @@ export default function RecordatorioHome({session}) {
     const [fechacreacion, setFechaCreacion] = useState(null);
     const [contenido, setContenido] = useState(null);
     const [fecharecordatorio, setFechaRecordatorio] = useState(null);
+    const { i18n, t } = useTranslation();
+    const changeLaguage = (language) => {i18n.changeLanguage(language);
+    };
             
     
         useEffect(() => {
@@ -59,10 +62,11 @@ export default function RecordatorioHome({session}) {
             
             <div>
              <AppBar/> 
+            
              <Button variant="contained">
             < Link to="/AddRecordatorio">
                  {/* {i18n.t("ADD REMINDER")*/}
-            ADD REMINDER
+                 {t("ADD REMINDER")}
              </Link>
         
                 
@@ -82,6 +86,14 @@ export default function RecordatorioHome({session}) {
                 </Card>
                     <br></br>            
                 </Grid>
+        </Grid>
+        <Grid position={'absolute'}>
+        <Button className={`App-link ${i18n.language === "es" ? "selected" : "unselected"}`}onClick={() => changeLaguage("es")}>
+            MX
+          </Button>
+          <Button className={`App-link ${i18n.language === "en" ? "selected" : "unselected"}`}onClick={() => changeLaguage("en")}>
+            US
+            </Button>
         </Grid>
             </div>
         );

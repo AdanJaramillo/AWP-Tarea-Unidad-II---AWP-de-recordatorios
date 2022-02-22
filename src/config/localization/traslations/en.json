@@ -1,0 +1,13 @@
+{
+    "WELCOME": "WELCOME",
+    "EXIT": "EXIT",
+    "PROFILE": "PROFILE",
+    "HOME":"HOME",
+    "ADD REMINDER": "ADD REMINDER",
+    "TITLE": "TITLE",
+    "CONTENT": "CONTENT",
+    "CREATION DATE": "CREATION DATE",
+    "REMINDER DATE": "REMINDER DATE",
+    "EDIT":"EDIT",
+    "DELETE":"DELETE"
+}

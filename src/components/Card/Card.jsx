@@ -5,8 +5,20 @@ import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import {CardActionArea } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 
-export default function MultiActionAreaCard({titulo, fechacreacion, contenido, fecharecordatorio}) {
+export default function MultiActionAreaCard({ id, titulo, fechacreacion, contenido, fecharecordatorio}) {
+  
+  useEffect(() => {
+    changeLaguage();
+},);
+
+  const { i18n, t } = useTranslation();
+  
+  const changeLaguage = (language) => {
+    i18n.changeLanguage(language);
+  };
   return (
     <Card sx={{ display: 'flex', height:250, width:800 }}>
     
@@ -15,27 +27,27 @@ export default function MultiActionAreaCard({titulo, fechacreacion, contenido, f
           
           <Typography gutterBottom variant="body2" component="div" color="red">
           {/* color="text.secondary" */}
-          Title: 
+          {t("TITLE")}
             <Typography variant="body2" color="Black">
               {titulo} 
               </Typography>
           </Typography>
           
           <Typography gutterBottom variant="body2" component="div" color="red">
-          Contents:
+          {t("CONTENT")}
             <Typography variant="body2" color="Black">
               {contenido} 
               </Typography>
           </Typography>
 
           <Typography variant="body2" color="red">
-          Creation date:
+          {t("CREATION DATE")}
             <Typography variant="body2" color="Black">
               {fechacreacion} 
               </Typography>
           </Typography>
           <Typography variant="body2" color="red">
-          Reminder Date:
+          {t("REMINDER DATE")}
             <Typography variant="body2" color="Black">
               {fecharecordatorio} 
               </Typography>
@@ -45,12 +57,12 @@ export default function MultiActionAreaCard({titulo, fechacreacion, contenido, f
      
         <Button variant="contained" size="small" color="success">
         <Link to="/Recordatorios">
-        Edit
+        {t("EDIT")}
         </Link>
         </Button> 
         <Button variant="contained" size="small" color="error">
         <Link to="/Recordatorios">
-        Delete
+        {t("DELETE")}
         </Link>
         </Button> 
     </Card>
