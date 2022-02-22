@@ -2,8 +2,8 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { Button } from '@mui/material';
-import {CardActionArea } from '@mui/material';
+import { Button, Grid } from '@mui/material';
+import {CardActions } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
@@ -22,8 +22,8 @@ export default function MultiActionAreaCard({ id, titulo, fechacreacion, conteni
   return (
     <Card sx={{ display: 'flex', height:250, width:800 }}>
     
-      <CardActionArea>    
-        <CardContent sx={{ flex: '1 0 auto' }}>
+      <CardActions>    
+        <CardContent sx={{ fontSize: 14 }} color="text.secondary">
           
           <Typography gutterBottom variant="body2" component="div" color="red">
           {/* color="text.secondary" */}
@@ -53,19 +53,22 @@ export default function MultiActionAreaCard({ id, titulo, fechacreacion, conteni
               </Typography>
           </Typography>
         </CardContent>
-      </CardActionArea>
-     
-        <Button variant="contained" size="small" color="success">
-        <Link to="/Recordatorios">
-        {t("EDIT")}
-        </Link>
-        </Button> 
-        <Button variant="contained" size="small" color="error">
-        <Link to="/Recordatorios">
-        {t("DELETE")}
-        </Link>
-        </Button> 
+      </CardActions>
+      <Grid>
+    <Button variant="contained" size="small" color="success">
+    <Link to="/Recordatorios">
+    {t("EDIT")}
+    </Link>
+    </Button> 
+    <Button variant="contained" size="small" color="error">
+    <Link to="/Recordatorios">
+    {t("DELETE")}
+    </Link>
+    </Button> 
+    </Grid>
+        
     </Card>
+   
   );
 }
 
