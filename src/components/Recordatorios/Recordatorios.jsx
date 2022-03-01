@@ -18,7 +18,6 @@ export default function Recordatorios({ session }) {
     }, []);
 
     
-
     async function getRecordatorios() {
         try {
             setLoading(true);

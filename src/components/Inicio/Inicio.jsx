@@ -36,7 +36,6 @@ export default function Inicio({session}) {
                     .select(`id,titulo, fechacreacion, contenido, fecharecordatorio`)
                     .in("id_user", [user.id])
                     .in("status", [true])
-                    //.maybeSingle();
     
                 if (error && status !== 406) {
                     throw error;
@@ -44,10 +43,7 @@ export default function Inicio({session}) {
     
                 if (data) {
                     setData(data);
-                   // setTitulo(data.titulo);
-                    //setFechaCreacion(data.fechacreacion);
-                   // setContenido(data.contenido);
-                   // setFechaRecordatorio(data.fecharecordatorio);
+
                     
                 }
                 console.log(data);
@@ -66,7 +62,6 @@ export default function Inicio({session}) {
             
              <Button variant="contained">
             < Link to="/NewRecordatorio">
-                 {/* {i18n.t("ADD REMINDER")*/}
                  {t("ADD REMINDER")}
              </Link>
         
