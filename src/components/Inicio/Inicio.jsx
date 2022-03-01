@@ -15,7 +15,7 @@ export default function Inicio({session}) {
     const { i18n, t } = useTranslation();
     const [data, setData] = useState(null);
     const changeLaguage = (language) => {i18n.changeLanguage(language);};
-    const handleDelete = async (id) => {const {  } = await supabase.from('recordatorio').update({status: false}).eq("id", id); setIsReload(true);
+    const handleDelete = async (id) => {const {} = await supabase.from('recordatorio').update({status: false}).eq("id", id); setIsReload(true);
     }
     const [isReload,setIsReload] = useState(true);
          

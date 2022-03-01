@@ -7,7 +7,7 @@ export default function Avatar({ url, size, onUpload }) {
 
   useEffect(() => {
     if (url) downloadImage(url);
-  }, [])
+  }, )
 
   async function downloadImage(path) {
     try {

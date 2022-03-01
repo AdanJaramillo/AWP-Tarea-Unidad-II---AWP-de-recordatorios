@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { supabase } from "../../config/supabaseClient";
 import AppBar from '../AppBar';
 import { Button } from "@mui/material";
