@@ -4,21 +4,14 @@ import { supabase } from "../../config/supabaseClient";
 import { Link } from 'react-router-dom';
 import { blue, blueGrey } from '@mui/material/colors';
 import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
 
 
 
 const Navbar = () => {    
 
-    useEffect(() => {
-        changeLaguage();
-    }, []);
     
-      const { i18n, t } = useTranslation();
+      const { t } = useTranslation();
       
-      const changeLaguage = (language) => {
-        i18n.changeLanguage(language);
-      };
 
     return (
         

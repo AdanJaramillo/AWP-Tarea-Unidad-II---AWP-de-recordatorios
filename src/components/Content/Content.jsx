@@ -2,23 +2,15 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { Button, Grid } from '@mui/material';
 import {CardActions } from '@mui/material';
-import { Link } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
+
 
 export default function MultiActionAreaCard({ id, titulo, fechacreacion, contenido, fecharecordatorio}) {
-  
-  useEffect(() => {
-    changeLaguage();
-}, []);
 
-  const { i18n, t } = useTranslation();
+
+  const { t } = useTranslation();
   
-  const changeLaguage = (language) => {
-    i18n.changeLanguage(language);
-  };
   return (
     <Card sx={{ display: 'flex', height:250, width:800 }}>
     
