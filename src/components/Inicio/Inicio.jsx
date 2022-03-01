@@ -75,6 +75,13 @@ export default function Inicio({session}) {
                 
              </Button>
              <Button href='https://github.com/AdanJaramillo/AWP-Tarea-Unidad-II---AWP-de-recordatorios'> Github </Button>
+
+        <Button className={`App-link ${i18n.language === "es" ? "selected" : "unselected"}`}onClick={() => changeLaguage("es")}>
+            MX
+          </Button>
+          <Button className={`App-link ${i18n.language === "en" ? "selected" : "unselected"}`}onClick={() => changeLaguage("en")}>
+            US
+            </Button>
             
             {data&&data.map(function(recordatorios){
                 return <Grid item xs={12} sm={6} md={4} sx={{marginBottom:1}} >
@@ -106,14 +113,7 @@ export default function Inicio({session}) {
 
             })}
             
-        <Grid position={'absolute'}>
-        <Button className={`App-link ${i18n.language === "es" ? "selected" : "unselected"}`}onClick={() => changeLaguage("es")}>
-            MX
-          </Button>
-          <Button className={`App-link ${i18n.language === "en" ? "selected" : "unselected"}`}onClick={() => changeLaguage("en")}>
-            US
-            </Button>
-        </Grid>
+        
             </div>
         );
     }
