@@ -2,40 +2,39 @@ import { useState, useEffect } from "react";
 import { supabase } from "../../config/supabaseClient";
 import AppBar from '../../components/AppBar';
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 export default function Recordatorios({ session }) {
     const [loading, setLoading] = useState(true);
-    const [titulo, setTitulo] = useState(null);
-    const [fechacreacion, setFechaCreacion] = useState(null);
-    const [contenido, setContenido] = useState(null);
-    const [fecharecordatorio, setFechaRecordatorio] = useState(null);
+    const {id}=useParams();
+    const [state, setState] = useState({id:'', titulo:'', fechacreacion:'', contenido:'', fecharecordatorio:'' });
+    const handleChange = ({target}) => {setState({...state, [target.name]: target.value})}; 
+    const navigate = useNavigate();
     
 
     useEffect(() => {
         getRecordatorios();
-    }, [session]);
+        return () => {}
+    }, []);
+
+    
 
     async function getRecordatorios() {
         try {
             setLoading(true);
-            const user = supabase.auth.user();
 
             let { data, error, status } = await supabase
                 .from("recordatorio")
-                .select(`titulo, fechacreacion, contenido, fecharecordatorio `)
-                .eq("id", user.id)
+                .select(`id_user, id, titulo, fechacreacion, contenido, fecharecordatorio `)
+                .eq("id", id)
                 .single();
 
             if (error && status !== 406) {
                 throw error;
             }
 
-            if (data) {
-                setTitulo(data.titulo);
-                setFechaCreacion(data.fechacreacion);
-                setContenido(data.contenido);
-                setFechaRecordatorio(data.fecharecordatorio);
+            if (data) { setState(data)
+                
                console.log(data);
             }
         } catch (error) {
@@ -46,27 +45,19 @@ export default function Recordatorios({ session }) {
         }
     }
 
-    async function EditarRecordatorio({ titulo, fechacreacion, contenido, fecharecordatorio  }) {
+    const EditarRecordatorio = async () =>  { 
         try {
             setLoading(true);
-            const user = supabase.auth.user();
 
-            const updates = {
-                id: user.id,
-                titulo, 
-                fechacreacion, 
-                contenido, 
-                fecharecordatorio,
-                updated_at: new Date(),
-            };
+            const update = {...state, updated_at: new Date()};
 
-            let { error } = await supabase.from("recordatorio").upsert(updates, {
-                returning: "minimal", // Don't return the value after inserting
-            });
+            let { error } = await supabase.from("recordatorio").upsert( update )
 
             if (error) {
                 throw error;
             }
+            navigate('/');
+            
         } catch (error) {
             console.log(error);
             alert(error.message);
@@ -93,38 +84,38 @@ export default function Recordatorios({ session }) {
             </div>
             <div>
                 <label htmlFor="titulo">Titulo</label>
-                <input
+                <input name="titulo"
                     id="titulo"
                     type="text"
-                    value={titulo || ""}
-                    onChange={(e) => setTitulo(e.target.value)}
+                    value={state.titulo || "" }
+                    onChange={handleChange}
                 />
             </div>
             <div>
                 <label htmlFor="fechacreacion">Fecha Creacion</label>
-                <input
+                <input name="fechacreacion"
                     id="fechacreacion"
                     type="Date"
-                    value={fechacreacion || ""}
-                    onChange={(e) => setFechaCreacion(e.target.value)}
+                    value={state.fechacreacion || ""}
+                    onChange={handleChange}
                 />
             </div>
             <div>
                 <label htmlFor="contenido">Contenido</label>
-                <input
+                <input name="contenido"
                     id="contenido"
                     type="text"
-                    value={contenido || ""}
-                    onChange={(e) => setContenido(e.target.value)}
+                    value={state.contenido || ""}
+                    onChange={handleChange}
                 />
             </div>
             <div>
                 <label htmlFor="fecharecordatorio">Fecha Recordatorio</label>
-                <input
+                <input name="fecharecordatorio"
                     id="fecharecordatorio"
                     type="Date"
-                    value={fecharecordatorio || ""}
-                    onChange={(e) => setFechaRecordatorio(e.target.value)}
+                    value={state.fecharecordatorio || ""}
+                    onChange={handleChange}
                 />
             </div>
            
@@ -132,8 +123,8 @@ export default function Recordatorios({ session }) {
             <div>
                 <Button
                     className="button block primary"
-                    onClick={() =>
-                        EditarRecordatorio({ titulo, fechacreacion, contenido, fecharecordatorio })
+                    onClick={ 
+                        EditarRecordatorio
                     }
                     disabled={loading}
                 >

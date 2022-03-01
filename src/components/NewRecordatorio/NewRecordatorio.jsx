@@ -9,47 +9,13 @@ import { Box } from "@mui/system";
 
 export default function RecordatorioAdd({session}) {
     // const [id, setid] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [titulo, setTitulo] = useState(null);
     const [fechacreacion, setFechaCreacion] = useState(null);
     const [contenido, setContenido] = useState(null);
     const [fecharecordatorio, setFechaRecordatorio] = useState(null);
     
 
-    useEffect(() => {
-        getRecordatorios();
-    }, [session]);
-
-    async function getRecordatorios() {
-        try {
-            setLoading(true);
-            const user = supabase.auth.user();
-
-            let { data, error, status } = await supabase
-                .from("recordatorio")
-                .select(`titulo, fechacreacion, contenido, fecharecordatorio `)
-                .eq("id", user.id)
-                .single();
-
-            if (error && status !== 406) {
-                throw error;
-            }
-
-            if (data) {
-                // setid(data.id);
-                setTitulo(data.titulo);
-                setFechaCreacion(data.fechacreacion);
-                setContenido(data.contenido);
-                setFechaRecordatorio(data.fecharecordatorio);
-               console.log(data);
-            }
-        } catch (error) {
-            console.log(error);
-            alert(error.message);
-        } finally {
-            setLoading(false);
-        }
-    }
 
     async function AgregarRecordatorio({ titulo, fechacreacion, contenido, fecharecordatorio  }) {
         try {
@@ -57,12 +23,13 @@ export default function RecordatorioAdd({session}) {
             const user = supabase.auth.user();
 
             const Agregar = {
-                id:user.id,
+                
                 titulo, 
                 fechacreacion, 
                 contenido, 
                 fecharecordatorio,
                 updated_at: new Date(),
+                id_user:user.id,
             };
 
                 

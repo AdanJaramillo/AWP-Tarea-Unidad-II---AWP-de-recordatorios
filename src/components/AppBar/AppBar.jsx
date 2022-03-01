@@ -12,7 +12,7 @@ const Navbar = () => {
 
     useEffect(() => {
         changeLaguage();
-    },);
+    }, []);
     
       const { i18n, t } = useTranslation();
       

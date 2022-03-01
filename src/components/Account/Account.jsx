@@ -10,7 +10,7 @@ export default function Account({ session }) {
 
     useEffect(() => {
         getProfile();
-    }, [session]);
+    }, []);
     async function getProfile() {
         try {
             setLoading(true);

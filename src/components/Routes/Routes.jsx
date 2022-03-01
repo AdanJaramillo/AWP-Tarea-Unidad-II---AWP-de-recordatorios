@@ -22,13 +22,9 @@ export default function Rotas({ session }) {
 
     useEffect(() => {
         getAccount();
-    }, [session]);
-
-    //Recordatorios
-
-    useEffect(() => {
         getRecordatorios();
-    }, [session]);
+    }, []);
+
 
     async function getAccount() {
         try {
@@ -98,7 +94,7 @@ export default function Rotas({ session }) {
            
             <Routes>
                         <Route path='/Account' element={<Account key={session.user.id} session={session}  />}/>
-                        <Route path='/Recordatorios' element={<Recordatorios key={session.user.id} session={session}  />}/>
+                        <Route path='/Recordatorios/:id' element={<Recordatorios key={session.user.id} session={session}  />}/>
                         <Route path='/NewRecordatorio' element={<NewRecordatorio key={session.user.id} session={session}/>}/>
                         <Route path='/' element={<Inicio key={session.user.id} session={session}/>}/>
             </Routes>

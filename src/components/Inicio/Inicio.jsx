@@ -12,18 +12,20 @@ import { useTranslation } from "react-i18next";
 
 export default function Inicio({session}) {
     const [,setLoading] = useState(true);
-    const [titulo, setTitulo] = useState(null);
-    const [fechacreacion, setFechaCreacion] = useState(null);
-    const [contenido, setContenido] = useState(null);
-    const [fecharecordatorio, setFechaRecordatorio] = useState(null);
     const { i18n, t } = useTranslation();
-    const changeLaguage = (language) => {i18n.changeLanguage(language);
-    };
-            
+    const [data, setData] = useState(null);
+    const changeLaguage = (language) => {i18n.changeLanguage(language);};
+    const handleDelete = async (id) => {const {  } = await supabase.from('recordatorio').update({status: false}).eq("id", id); setIsReload(true);
+    }
+    const [isReload,setIsReload] = useState(true);
+         
     
         useEffect(() => {
-            getRecordatorios();
-        }, [session]);
+            if (isReload){
+                setIsReload(false);
+                getRecordatorios();
+            }
+        }, [isReload]);
     
         async function getRecordatorios() {
             try {
@@ -32,21 +34,21 @@ export default function Inicio({session}) {
     
                 let { data, error, status } = await supabase
                     .from("recordatorio")
-                    .select(`id,titulo, fechacreacion, contenido, fecharecordatorio `)
-                    .eq("id", user.id)
-                    .single();
+                    .select(`id,titulo, fechacreacion, contenido, fecharecordatorio`)
+                    .in("id_user", [user.id])
+                    .in("status", [true])
+                    //.maybeSingle();
     
                 if (error && status !== 406) {
                     throw error;
                 }
     
                 if (data) {
-                    // setid(data.id);
-                    
-                    setTitulo(data.titulo);
-                    setFechaCreacion(data.fechacreacion);
-                    setContenido(data.contenido);
-                    setFechaRecordatorio(data.fecharecordatorio);
+                    setData(data);
+                   // setTitulo(data.titulo);
+                    //setFechaCreacion(data.fechacreacion);
+                   // setContenido(data.contenido);
+                   // setFechaRecordatorio(data.fecharecordatorio);
                     
                 }
                 console.log(data);
@@ -74,19 +76,36 @@ export default function Inicio({session}) {
              </Button>
              <Button href='https://github.com/AdanJaramillo/AWP-Tarea-Unidad-II---AWP-de-recordatorios'> Github </Button>
             
-            <Grid container padding={10} spacing={7} className="CARD">
-            <Grid item xs={12} sm={6} md={4} >
-                <Card
-                // id={id}
-                titulo={titulo}                                 
-                 contenido={contenido}
-                  fechacreacion={fechacreacion}
-                  fecharecordatorio={fecharecordatorio}              
-                            >       
-                </Card>
-                    <br></br>            
-                </Grid>
-        </Grid>
+            {data&&data.map(function(recordatorios){
+                return <Grid item xs={12} sm={6} md={4} sx={{marginBottom:1}} >
+                    <Card 
+                    id={recordatorios.id}
+                    titulo={recordatorios.titulo}                                 
+                     contenido={recordatorios.contenido}
+                      fechacreacion={recordatorios.fechacreacion}
+                      fecharecordatorio={recordatorios.fechacreacion}              
+                                > 
+                                      
+                    </Card>
+                    <Grid>
+                    <Grid>
+      <Button variant="contained" size="small" color="success">
+      <Link to={`/Recordatorios/${recordatorios.id}`}>
+      {t("EDIT")}
+      </Link>
+      </Button> 
+      <Button variant="contained" size="small" color="warning"
+    onClick={ () => handleDelete(recordatorios.id)}>
+    <Link to="/">{t("DELETE")}</Link>
+    </Button>
+      </Grid>
+                    </Grid>
+                              
+                    </Grid>
+                
+
+            })}
+            
         <Grid position={'absolute'}>
         <Button className={`App-link ${i18n.language === "es" ? "selected" : "unselected"}`}onClick={() => changeLaguage("es")}>
             MX

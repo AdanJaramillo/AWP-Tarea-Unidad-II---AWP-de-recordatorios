@@ -12,7 +12,7 @@ export default function MultiActionAreaCard({ id, titulo, fechacreacion, conteni
   
   useEffect(() => {
     changeLaguage();
-},);
+}, []);
 
   const { i18n, t } = useTranslation();
   
@@ -54,18 +54,7 @@ export default function MultiActionAreaCard({ id, titulo, fechacreacion, conteni
           </Typography>
         </CardContent>
       </CardActions>
-      <Grid>
-    <Button variant="contained" size="small" color="success">
-    <Link to="/Recordatorios">
-    {t("EDIT")}
-    </Link>
-    </Button> 
-    <Button variant="contained" size="small" color="error">
-    <Link to="/Recordatorios">
-    {t("DELETE")}
-    </Link>
-    </Button> 
-    </Grid>
+      
         
     </Card>
    

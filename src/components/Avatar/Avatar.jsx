@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react'
 import { supabase } from '../../config/supabaseClient'
 
 export default function Avatar({ url, size, onUpload }) {
-  const [avatarUrl, setAvatarUrl] = useState(null)
-  const [uploading, setUploading] = useState(false)
+  const [avatarUrl, setAvatarUrl] = useState(null);
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
-    if (url) downloadImage(url)
-  }, [url])
+    if (url) downloadImage(url);
+  }, [])
 
   async function downloadImage(path) {
     try {
